@@ -1,9 +1,9 @@
 # 
 
-# IFBiD Dataset 
-BeCAPTCHA-Mouse Benchmark for development of bot detection technologyes based on mouse dynamics.
+# IFBiD Datasets
+IFBiD: Inference-Free Bias Detection
 
-## INSTRUCTIONS FOR DOWNLOADING BeCAPTCHA-Mouse Benchmark
+## INSTRUCTIONS TO DOWNLOAD DigitWdb and GenderWdb datasets
 1) [Download license agreement](http://atvs.ii.uam.es/atvs/licenses/BeCAPTCHA-Mouse_License_Agreement.pdf), send by email one signed and scanned copy to **atvs@uam.es** according to the instructions given in point 2.
  
  
@@ -23,28 +23,45 @@ BeCAPTCHA-Mouse Benchmark for development of bot detection technologyes based on
 5) For more information, please contact: **atvs@uam.es**
 
 
-## DESCRIPTION OF BeCAPTCHA-Mouse BENCHMARK
-BeCAPTCHA-Mouse benchmark contains 9K synthetic mouse trayectories generated with two methods: 
+## DESCRIPTION OF DigitWdb and GenderWdb
+We have created two databases for experimenting in automatic bias detection: DigitWdb and GenderWdb. The databases contain the weights Ω of the models φ(·,|Ω) used
+in our experiments for the tasks of digit and gender classification: 
 
-**Method 1: Function-based Mouse Trajectory Synthesis**  
-With this approach the mouse trajectories are generated according to three different trajectory shapes (linear, quadratic, and exponential) and three different velocity profiles (constant, logarithmic, and Gaussian). 
-To generate a synthetic trajectory **{x̂, ŷ}** with *M* points, first we define the initial point [*x̂<sub>1</sub>, ŷ<sub>1</sub>*] and ending point [*x̂<sub>M</sub>, ŷ<sub>M</sub>*]. Second, we select one of three velocity profiles: *i)* constant velocity, where the distance between adjacent points is constant; *ii)* logarithmic velocity, where the distances are gradually increasing (acceleration); and *iii)* Gaussian velocity, in which the distances first increase and then decrease when they get close to the end of the trajectory (acceleration and deceleration). Third, we generate a sequence **x̂** between *x̂<sub>1</sub>* and *x̂<sub>M</sub>* spaced according to the selected velocity profile. The **ŷ** sequence is then generated according to the shape function. For example, for a shape defined by the quadratic function *ŷ = ax̂<sup>2</sup> + bx̂ + c*, we fit *b* and *c* for *a* fixed value of *a* by using the initial and ending points. We repeat the process fixing either *b* or *c*. The range of the parameters {*a, b, c*} explored is determined by analyzing real
-mouse movements fitted to quadratic functions. Linear and exponential shapes are generated similarly.  
-Fig. 1 (trajectories D, E, and F) shows some examples of these mouse trajectories synthesized. That figure also shows the 3 diferent velocity profiles considered: the 3 trajectories in *E* have constant velocity, *F* shows acceleration (the distance between adjacent samples increases gradually), and *D* has initial acceleration and final deceleration. We can generate infinite mouse trajectories
-with this approach by varying the parameters of each function.
+### DigitWdb: 48K digit classification networks
+The architecture is the same for all models: a CNN φ(·|Ω) with three convolutional layers with relu activation, each followed by a maxpool, and two fully connected layers at the end (with 128 and 10 neurons, a relu and a softmax activation function respectively), with a dropout layer of 0.3 between the two. Each of the trained models results in a total of 50K parameters.
+
+**• Train:** 40K models classified by bias level into four groups, with 10K models per level (B = 10K). The models were trained using the first 30K training digits from Colored MNIST. The models have been categorized into four groups depending on the replica subset with which they have been trained (n = 4). The level of bias of the replica subset is what determines the level of bias of the model. Groups are: very high bias (color jitter variance of 0.02), high bias (color jitter variance of 0.03), low bias (color jitter variance of 0.04), and very low bias (color jitter variance of 0.05).
+
+**• Test:** 8K models classified by bias level into four groups (2K models for each level). The models were trained using the last 30K training digits from Colored MNIST and categorized in the same way as the training ones (i.e., from very high bias to very low bias).
+
+**Properties**
+
+<table>
+  <tr align="center">
+    <th>Model<br>Bias</th>
+    <th colspan="10">Digit Classification Accuracy</th>
+  </tr>
+   <tr align="center">
+    <th></th><th>0<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9
+  </tr>
+  <tr align="center"><td align="left">Very Low	 <td>	88  <td> 94 <td> 77 <td> 82 <td> 90 <td> 89 <td> 75 <td> 84 <td> 81 <td> 82 </tr>
+  <tr align="center"><td align="left">Low	      <td>	79  <td>  85  <td>  67  <td>  69  <td>  81  <td>  83  <td>  65  <td>  76  <td>  72  <td>  69 </tr>
+  <tr align="center"><td align="left">High	     <td>	66  <td>  76  <td>  54  <td>  56  <td>  72  <td>  69  <td>  49  <td>  64  <td>  58  <td>  46	</tr>
+  <tr align="center"><td align="left">Very High	<td>	49  <td>  51  <td>  42  <td>  38  <td>  59  <td>  40  <td>  40  <td>  51  <td>  43  <td>  32 </tr>
+</table>
+
+### GenderWdb: 36K gender classification networks
+The architecture is the same for all models: a CNN with six convolutional layers with relu activation, each followed by a maxpool, and two fully connected layers at the end (with 128 and two neurons, a relu and a softmax activation function respectively). The result is a model with a total of 100K parameters.
+
+**• Train:** 30K models belonging to three classes of bias (n = 3), depending on the subset Si with which the model has been trained, with 10K models per class (B =
+10K). The models were trained using the first 12K faces of each ethnic group of DiveFace: S1 is asian biased, S2 is black biased, and S3 is caucasian biased.
+
+**• Test:** 6K models with the same three types of bias as train. The models were trained using the last 12K faces of each ethnic group of DiveFace.
+
+**Properties**
 
 ![](https://github.com/BiDAlab/BeCAPTCHA-Mouse/blob/master/Fig5.png)
 **Figure 1. Examples of mouse trajectories and their velocity profiles employed in this work: *A* is a real one extracted from a task of the database; *B* and *C* are synthetic trajectories generated with the GAN network; *D*, *E* and *F* are generated with the knowledge-based approach. Note that for each velocity profile (*D* = Gaussian, *E* = constant, *F* = logarithmic), we include the three knowledge-based trajectories (linear, quadratic, and exponential).**
-
-**Method 2: GAN-based Trajectories**  
-For this approach we employ a GAN (Generative Adversarial Network),in which two neuronal networks, commonly named Generator and Discriminator, are trained one against the other (thus the \adversarial"). The architecture of the GAN is depicted in Fig. 2.
-
-![](https://github.com/BiDAlab/BeCAPTCHA-Mouse/blob/master/Fig6.png)
-**Figure 2. The proposed architecture to train a GAN Generator of synthetic mouse trajectories.The Generator learns the human features of the mouse trajectories and generate human-like ones from Gaussian Noise.**
-
-The aim of the Generator is to fool the Discriminator by generating synthetic mouse trajectories very similar to the real ones, while the Discriminator has to predict whether the sample comes from the real set or is a fake created by the Generator. Once the Generator is trained this way, then we can use it to synthesize mouse trajectories very similar to the human ones.
-Fig. 1 shows two examples (trajectories B and C) of synthetic mouse trajectories generated with the GAN network and the comparison with a real one.  
-The human mouse trajectories employed to train the GAN network were extracted from Chao *et al.* [2] database, which is comprised of more than 200K mouse trajectories acquired from 58 users who completed 300 repetitions of the task. In each repetition, the users had to click 8 buttons that appeared in the screen sequentially. This task was repeated twice in each session.
 
 
 #### BENCHMARK STRUCTURE
