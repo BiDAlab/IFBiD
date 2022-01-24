@@ -39,7 +39,7 @@ The architecture is the same for all models: a CNN φ(·|Ω) with three convolu
 <table>
   <tr align="center">
     <th>Model<br>Bias</th>
-    <th colspan="10">Digit Classification Accuracy</th>
+    <th colspan="10">Digit Classification Accuracy (%)</th>
   </tr>
    <tr align="center">
     <th></th><th>0<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9
