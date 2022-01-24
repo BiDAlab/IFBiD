@@ -46,7 +46,7 @@ The architecture is the same for all models: a CNN with six convolutional layers
 
 **• Train:** 30K models belonging to three classes of bias, with 10K models per class. Models were trained with the [DiveFace](https://github.com/BiDAlab/DiveFace) database of face images. Bias was introduced by unbalancing each ethnic group during training: asian, African/Indian, and Caucasian.
 
-**• Test:** 6K models belonging to three classes of bias. Models were trained using face images from [DiveFace], and bias was introduced by unbalancing each ethnic group
+**• Test:** 6K models belonging to three classes of bias. Models were trained using face images from [DiveFace](https://github.com/BiDAlab/DiveFace), and bias was introduced by unbalancing each ethnic group.
 
 The face images for Train and for Test belong to independent sets.
 
