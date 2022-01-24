@@ -1,26 +1,15 @@
 # 
 
-# IFBiD Datasets
+# IFBiD Databases
 IFBiD: Inference-Free Bias Detection
 
-## INSTRUCTIONS TO DOWNLOAD DigitWdb and GenderWdb datasets
-1) [Download license agreement](http://atvs.ii.uam.es/atvs/licenses/BeCAPTCHA-Mouse_License_Agreement.pdf), send by email one signed and scanned copy to **atvs@uam.es** according to the instructions given in point 2.
- 
- 
-2) Send an email to **atvs@uam.es**, as follows:
+## DOWNLOAD DigitWdb and GenderWdb Databases
 
-   *Subject:* **[DATABASE benchmark: BeCAPTCHA_Mouse_Benchmark]**
++ Download [DigitWdb](http://atvs.ii.uam.es/atvs/intranet/free_DB/beCAPTCHA).
 
-   Body: Your name, e-mail, telephone number, organization, postal mail, purpose for which you will use the database, time and date at which you sent the email with the signed license agreement.
++ Download [GenderWdb](http://atvs.ii.uam.es/atvs/intranet/free_DB/beCAPTCHA).
  
-
-3) Once the email copy of the license agreement has been received at ATVS, you will receive an email with a username, a password, and a time slot to download the database.
- 
-
-4) [Download the benchmark](http://atvs.ii.uam.es/atvs/intranet/free_DB/beCAPTCHA), for which you will need to provide the authentication information given in step 4. After you finish the download, please notify by email to **atvs@uam.es** that you have successfully completed the transaction.
- 
-
-5) For more information, please contact: **atvs@uam.es**
++ For more information, please contact: **atvs@uam.es**
 
 
 ## DESCRIPTION OF DigitWdb and GenderWdb
@@ -30,12 +19,13 @@ in our experiments for the tasks of digit and gender classification:
 ### DigitWdb: 48K digit classification networks
 The architecture is the same for all models: a CNN φ(·|Ω) with three convolutional layers with relu activation, each followed by a maxpool, and two fully connected layers at the end (with 128 and 10 neurons, a relu and a softmax activation function respectively), with a dropout layer of 0.3 between the two. Each of the trained models results in a total of 50K parameters.
 
-**• Train:** 40K models classified by bias level into four groups, with 10K models per level (B = 10K). The models were trained using the first 30K training digits from Colored MNIST. The models have been categorized into four groups depending on the replica subset with which they have been trained (n = 4). The level of bias of the replica subset is what determines the level of bias of the model. Groups are: very high bias (color jitter variance of 0.02), high bias (color jitter variance of 0.03), low bias (color jitter variance of 0.04), and very low bias (color jitter variance of 0.05).
+**• Train:** 40K models classified by bias level into four groups, with 10K models per level. The models were trained using the first 30K training digits from [Colored MNIST](https://github.com/feidfoe/learning-not-to-learn). The models have been categorized into four groups depending on the replica subset with which they have been trained. The level of bias of the replica subset is what determines the level of bias of the model. Groups are: very high bias (color jitter variance of 0.02), high bias (color jitter variance of 0.03), low bias (color jitter variance of 0.04), and very low bias (color jitter variance of 0.05).
 
-**• Test:** 8K models classified by bias level into four groups (2K models for each level). The models were trained using the last 30K training digits from Colored MNIST and categorized in the same way as the training ones (i.e., from very high bias to very low bias).
+**• Test:** 8K models classified by bias level into four groups (2K models for each level). The models were trained using the last 30K training digits from [Colored MNIST](https://github.com/feidfoe/learning-not-to-learn) and categorized in the same way as the training ones (i.e., from very high bias to very low bias).
 
-**Properties**
+The digits for Train and for Test belong to independent sets.
 
+**Average digit classification accuracy in DigitWdb models according to their level of bias. The more bias, the worse the classification accuracy of each digit.**
 <table>
   <tr align="center">
     <th>Model<br>Bias</th>
@@ -50,18 +40,19 @@ The architecture is the same for all models: a CNN φ(·|Ω) with three convolu
   <tr align="center"><td align="left">Very High	<td>	49  <td>  51  <td>  42  <td>  38  <td>  59  <td>  40  <td>  40  <td>  51  <td>  43  <td>  32 </tr>
 </table>
 
+
 ### GenderWdb: 36K gender classification networks
 The architecture is the same for all models: a CNN with six convolutional layers with relu activation, each followed by a maxpool, and two fully connected layers at the end (with 128 and two neurons, a relu and a softmax activation function respectively). The result is a model with a total of 100K parameters.
 
-**• Train:** 30K models belonging to three classes of bias (n = 3), depending on the subset Si with which the model has been trained, with 10K models per class (B =
-10K). The models were trained using the first 12K faces of each ethnic group of DiveFace: S1 is asian biased, S2 is black biased, and S3 is caucasian biased.
+**• Train:** 30K models belonging to three classes of bias, with 10K models per class. Models were trained with the [DiveFace](https://github.com/BiDAlab/DiveFace) database of face images. Bias was introduced by unbalancing each ethnic group during training: asian, African/Indian, and Caucasian.
 
-**• Test:** 6K models with the same three types of bias as train. The models were trained using the last 12K faces of each ethnic group of DiveFace.
+**• Test:** 6K models belonging to three classes of bias. Models were trained using face images from [DiveFace], and bias was introduced by unbalancing each ethnic group
+
+The face images for Train and for Test belong to independent sets.
 
 **Properties**
 
-![](https://github.com/BiDAlab/BeCAPTCHA-Mouse/blob/master/Fig5.png)
-**Figure 1. Examples of mouse trajectories and their velocity profiles employed in this work: *A* is a real one extracted from a task of the database; *B* and *C* are synthetic trajectories generated with the GAN network; *D*, *E* and *F* are generated with the knowledge-based approach. Note that for each velocity profile (*D* = Gaussian, *E* = constant, *F* = logarithmic), we include the three knowledge-based trajectories (linear, quadratic, and exponential).**
+<!-- ![](https://github.com/BiDAlab/BeCAPTCHA-Mouse/blob/master/Fig5.png) -->
 
 
 #### BENCHMARK STRUCTURE
@@ -113,8 +104,19 @@ The nomenclature followed to name the files of the function-based method is: NNN
   
 + C: indicates the task (1-8) of the human mouse database in which the trayectory was synthetized. This is necessary because the function-based method needs the initial [*x̂<sub>1</sub>, ŷ<sub>1</sub>*] and the end [*x̂<sub>M</sub>, ŷ<sub>M</sub>*] points of the human trayectory to synthetyse.
 
+## License Agreement
+By downloading the datasets you agree to the following terms and conditions:
 
-#### REFERENCES
++ The DigitWdb and GenderWdb datasets are available for non-commercial research and educational purposes only.
++ You agree not to reproduce, duplicate, copy, sell, trade, resell or exploit for any commercial purposes, any portion of the models and any portion of derived data.
++ BiDA-lab makes no representations or warranties of any kind regarding the Databases, whether express, implied, statutory, or other.
++ You accept full responsibility for your use of the Databases and shall defend and indemnify the BiDA-lab, including their employees, Trustees, officers and agents, against any and all claims arising from your use of the Databases.
++ You may provide research associates and colleagues with access to the Databases provided that they first agree to be bound by these terms and conditions.
++ If you are employed by a for-profit, commercial entity, your employer shall also be bound by these terms and conditions, and you hereby represent that he or she is fully authorized to enter into this agreement on behalf of such employer.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+## REFERENCES
 For further information on the benchmark and on different applications where it has been used, we refer the reader to (all these articles are publicly available in the [publications](http://atvs.ii.uam.es/atvs/listpublications.do) section of the BiDA group webpage).
 
 + [1] A. Acien, A. Morales, J. Fierrez, R. Vera-Rodriguez. BeCAPTCHA-Mouse: Synthetic Mouse Trajectories and Improved Bot Detection. *arXiv:2005.00890*, 2020. [[pdf](https://arxiv.org/pdf/2005.00890.pdf)]
