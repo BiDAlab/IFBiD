@@ -1,7 +1,7 @@
 # 
 
 # Databases for Inference-Free Bias Detection (IFBiD)
-The Databases contain 84K TF-Keras models for the digit (DigitWdb) and gender (GenderWdb) classification tasks, with their parameters stored in .h5 file format.
+The Databases contain 48K and 36K TF-Keras models for the digit (DigitWdb) and gender (GenderWdb) classification tasks, with their parameters stored in .h5 file format.
 
 ## DigitWdb and GenderWdb Databases
 
@@ -9,17 +9,16 @@ The Databases contain 84K TF-Keras models for the digit (DigitWdb) and gender (G
 
 + Download [GenderWdb](http://atvs.ii.uam.es/atvs/intranet/free_DB/beCAPTCHA).
 
-## DESCRIPTION OF DigitWdb and GenderWdb
 We have created two databases to experiment with automatic bias detection: DigitWdb and GenderWdb. The databases contain the weights Ω of the models φ(·,|Ω) used
 in our experiments for the digit and gender classification taks. 
 
-### DigitWdb: 48K digit classification networks
+## DigitWdb: 48K digit classification networks
 
 **• Train:** 40K models classified by bias level into four groups, with 10K models per level. The models were trained using the first 30K training digits from [Colored MNIST](https://github.com/feidfoe/learning-not-to-learn). Groups are: very high bias (color jitter variance of 0.02), high bias (color jitter variance of 0.03), low bias (color jitter variance of 0.04), and very low bias (color jitter variance of 0.05).
 
 **• Test:** 8K models classified by bias level into four groups (2K models for each level). The models were trained using the last 30K training digits from [Colored MNIST](https://github.com/feidfoe/learning-not-to-learn) and categorized in the same way as the training ones (i.e., from very high bias to very low bias).
 
-The digits for Train and for Test belong to independent sets.
+*The digits for Train and for Test belong to independent sets.*
 
 **Average digit classification accuracy in DigitWdb models according to their level of bias. The more bias, the worse the classification accuracy of each digit.**
 <table>
@@ -37,13 +36,13 @@ The digits for Train and for Test belong to independent sets.
 </table>
 
 
-### GenderWdb: 36K gender classification networks
+## GenderWdb: 36K gender classification networks
 
 **• Train:** 30K models belonging to three classes of bias, with 10K models per class. Models were trained with the [DiveFace](https://github.com/BiDAlab/DiveFace) database of face images. Bias was introduced by unbalancing each ethnic group during training: aAsian, African/Indian, and Caucasian.
 
 **• Test:** 6K models belonging to three classes of bias. Models were trained and biased using face images from [DiveFace](https://github.com/BiDAlab/DiveFace) in the same way as the Train set.
 
-The face images for Train and for Test belong to independent sets.
+*The face images for Train and for Test belong to independent sets.*
 
 **Average gender classification accuracy in GenderWdb models according to their class bias.**
 <table>
