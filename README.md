@@ -1,25 +1,21 @@
 # 
 
-# IFBiD Databases
-IFBiD: Inference-Free Bias Detection
+# Databases for Inference-Free Bias Detection (IFBiD)
+The Databases contain 84K TF-Keras models for the digit and gender classification tasks, with their parameters stored in .h5 file format.
 
-## DOWNLOAD DigitWdb and GenderWdb Databases
+## DigitWdb and GenderWdb Databases
 
 + Download [DigitWdb](http://atvs.ii.uam.es/atvs/intranet/free_DB/beCAPTCHA).
 
 + Download [GenderWdb](http://atvs.ii.uam.es/atvs/intranet/free_DB/beCAPTCHA).
- 
-+ For more information, please contact: **atvs@uam.es**
-
 
 ## DESCRIPTION OF DigitWdb and GenderWdb
-We have created two databases for experimenting in automatic bias detection: DigitWdb and GenderWdb. The databases contain the weights Ω of the models φ(·,|Ω) used
-in our experiments for the tasks of digit and gender classification: 
+We have created two databases to experiment with automatic bias detection: DigitWdb and GenderWdb. The databases contain the weights Ω of the models φ(·,|Ω) used
+in our experiments for the digit and gender classification taks. 
 
 ### DigitWdb: 48K digit classification networks
-The architecture is the same for all models: a CNN φ(·|Ω) with three convolutional layers with relu activation, each followed by a maxpool, and two fully connected layers at the end (with 128 and 10 neurons, a relu and a softmax activation function respectively), with a dropout layer of 0.3 between the two. Each of the trained models results in a total of 50K parameters.
 
-**• Train:** 40K models classified by bias level into four groups, with 10K models per level. The models were trained using the first 30K training digits from [Colored MNIST](https://github.com/feidfoe/learning-not-to-learn). The models have been categorized into four groups depending on the replica subset with which they have been trained. The level of bias of the replica subset is what determines the level of bias of the model. Groups are: very high bias (color jitter variance of 0.02), high bias (color jitter variance of 0.03), low bias (color jitter variance of 0.04), and very low bias (color jitter variance of 0.05).
+**• Train:** 40K models classified by bias level into four groups, with 10K models per level. The models were trained using the first 30K training digits from [Colored MNIST](https://github.com/feidfoe/learning-not-to-learn). Groups are: very high bias (color jitter variance of 0.02), high bias (color jitter variance of 0.03), low bias (color jitter variance of 0.04), and very low bias (color jitter variance of 0.05).
 
 **• Test:** 8K models classified by bias level into four groups (2K models for each level). The models were trained using the last 30K training digits from [Colored MNIST](https://github.com/feidfoe/learning-not-to-learn) and categorized in the same way as the training ones (i.e., from very high bias to very low bias).
 
@@ -42,11 +38,10 @@ The digits for Train and for Test belong to independent sets.
 
 
 ### GenderWdb: 36K gender classification networks
-The architecture is the same for all models: a CNN with six convolutional layers with relu activation, each followed by a maxpool, and two fully connected layers at the end (with 128 and two neurons, a relu and a softmax activation function respectively). The result is a model with a total of 100K parameters.
 
-**• Train:** 30K models belonging to three classes of bias, with 10K models per class. Models were trained with the [DiveFace](https://github.com/BiDAlab/DiveFace) database of face images. Bias was introduced by unbalancing each ethnic group during training: asian, African/Indian, and Caucasian.
+**• Train:** 30K models belonging to three classes of bias, with 10K models per class. Models were trained with the [DiveFace](https://github.com/BiDAlab/DiveFace) database of face images. Bias was introduced by unbalancing each ethnic group during training: aAsian, African/Indian, and Caucasian.
 
-**• Test:** 6K models belonging to three classes of bias. Models were trained using face images from [DiveFace](https://github.com/BiDAlab/DiveFace), and bias was introduced by unbalancing each ethnic group.
+**• Test:** 6K models belonging to three classes of bias. Models were trained and biased using face images from [DiveFace](https://github.com/BiDAlab/DiveFace) in the same way as the Train set.
 
 The face images for Train and for Test belong to independent sets.
 
