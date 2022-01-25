@@ -28,11 +28,11 @@ The digits for Train and for Test belong to independent sets.
 **Average digit classification accuracy in DigitWdb models according to their level of bias. The more bias, the worse the classification accuracy of each digit.**
 <table>
   <tr align="center">
-    <th>Model<br>Bias</th>
+    <th rowspan="2">Model Bias</th>
     <th colspan="10">Digit Classification Accuracy (%)</th>
   </tr>
    <tr align="center">
-    <th></th><th>0<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9
+    <th>0<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9
   </tr>
   <tr align="center"><td align="left">Very Low	 <td>	88  <td> 94 <td> 77 <td> 82 <td> 90 <td> 89 <td> 75 <td> 84 <td> 81 <td> 82 </tr>
   <tr align="center"><td align="left">Low	      <td>	79  <td>  85  <td>  67  <td>  69  <td>  81  <td>  83  <td>  65  <td>  76  <td>  72  <td>  69 </tr>
@@ -50,59 +50,21 @@ The architecture is the same for all models: a CNN with six convolutional layers
 
 The face images for Train and for Test belong to independent sets.
 
-**Properties**
+**Average gender classification accuracy in GenderWdb models according to their class bias.**
+<table>
+  <tr align="center">
+    <th rowspan="2">Model Bias</th>
+    <th colspan="10">Gender Classification Accuracy (%)</th>
+  </tr>
+   <tr align="center">
+    <th>Asian<th>African/Indian<th>Caucasian
+  </tr>
+  <tr align="center"><td align="left">Asian	 <td>	89.5  <td> 81.5 <td> 82.9 </tr>
+  <tr align="center"><td align="left">African/Indian	      <td>	82.0  <td>  89.4  <td>  83.0  </tr>
+  <tr align="center"><td align="left">Caucasian	     <td>	80.0  <td>  83.2  <td>  89.2  </tr>
+</table>
 
 <!-- ![](https://github.com/BiDAlab/BeCAPTCHA-Mouse/blob/master/Fig5.png) -->
-
-
-#### BENCHMARK STRUCTURE
-BeCAPTCHA-Mouse benchmark are composed by two main folders: *'DB_GAN'* which contains the synthetic GAN trayectories and *'DB_fnc'* that contains the function-based ones. Each main folder has other two folders: *'raw'* folder which contains the raw data of the synthetic mouse trayectories in .txt files, and *'neuromotor'* folder that contains the Sigma-Lognormal descomposition (more details in [3]) of the raw files in .ana format. Both kind of files have the same name to match them easily.
-
-#### FILES FORMAT
-+ .txt files: it just contains two columns with the **{x̂, ŷ}** mouse coordinates.
-  + COLUMN 1: represents the **x̂** coordinate.
-
-  + COLUMN 2: represents the **ŷ** coordinate.
-
-+ .ana files: each row contains a log-normal signal extracted from the synthetic mouse trayectory, this log-normal signal is definded by 6 parameters. One parameter in each column:  
-
-  + COLUMN 1: represents the *D* parameter.
-
-  + COLUMN 2: represents the *t<sub>0</sub>* parameter.
-
-  + COLUMN 3: represents the *μ* parameter.
-
-  + COLUMN 4: represents the *σ* parameter.
-
-  + COLUMNS 5 : represents the *θ<sub>s</sub>* parameter.
-  
-  + COLUMNS 6 : represents the *θ<sub>e</sub>* parameter.
-  
-  + COLUMNS 7, 8: are zeros.
-  
-
-#### FILES NOMENCLATURE
-The nomenclature followed to name the files of the function-based method is: NNNN_y=A_vp=B_task=C.txt
-
-+ NNNN: indicates the number of the sample.
-
-+ A: indicates the shape of the trajectory:
-
-  + 0 = linear.
-  
-  + 1 = quadratic.
-  
-  + 2 = exponential.
-  
-+ B: indicates the velocity profile:
-
-  + 0 = constant velocity.
-  
-  + 1 = logarithmic velocity.
-  
-  + 2 = Gaussian velocity.
-  
-+ C: indicates the task (1-8) of the human mouse database in which the trayectory was synthetized. This is necessary because the function-based method needs the initial [*x̂<sub>1</sub>, ŷ<sub>1</sub>*] and the end [*x̂<sub>M</sub>, ŷ<sub>M</sub>*] points of the human trayectory to synthetyse.
 
 ## License Agreement
 By downloading the datasets you agree to the following terms and conditions:
@@ -117,12 +79,7 @@ By downloading the datasets you agree to the following terms and conditions:
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
 ## REFERENCES
-For further information on the benchmark and on different applications where it has been used, we refer the reader to (all these articles are publicly available in the [publications](http://atvs.ii.uam.es/atvs/listpublications.do) section of the BiDA group webpage).
 
-+ [1] A. Acien, A. Morales, J. Fierrez, R. Vera-Rodriguez. BeCAPTCHA-Mouse: Synthetic Mouse Trajectories and Improved Bot Detection. *arXiv:2005.00890*, 2020. [[pdf](https://arxiv.org/pdf/2005.00890.pdf)]
++ I. Serna, D. DeAlcala, A. Morales, J. Fierrez, and J. Ortega-Garcia. IFBiD: Inference-Free Bias Detection. In *AAAI Workshop on Artificial Intelligence Safety (SafeAI)*, 2022.
 
-+ [2] C. Shen, Z. Cai, X. Guan, R. Maxion. Performance evaluation of anomalydetection algorithms for mouse dynamics, *Computers & Security*, 45: 156–171, 2014.
-
-+ [3] M. Djioua, R. Plamondon. A new algorithm and system for the characterization of handwriting strokes with delta-lognormal parameters, *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 31(11): 2060–2072, 2009.
-
-Please remember to reference article [1] on any work made public, whatever the form, based directly or indirectly on any part of the BeCAPTCHA-Mouse benchmark.
+Please remember to reference the article on any work made public, whatever the form.
