@@ -1,7 +1,7 @@
 # 
 
 # Databases for Inference-Free Bias Detection (IFBiD)
-The Databases contain 84K TF-Keras models for the digit and gender classification tasks, with their parameters stored in .h5 file format.
+The Databases contain 84K TF-Keras models for the digit (DigitWdb) and gender (GenderWdb) classification tasks, with their parameters stored in .h5 file format.
 
 ## DigitWdb and GenderWdb Databases
 
