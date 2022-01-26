@@ -5,9 +5,9 @@ The Databases contain 48K and 36K TF-Keras models for the digit (DigitWdb) and g
 
 ## DigitWdb and GenderWdb Databases
 
-+ Download [DigitWdb](http://atvs.ii.uam.es/atvs/intranet/free_DB/beCAPTCHA).
++ Download [DigitWdb](https://dauam-my.sharepoint.com/:u:/g/personal/ignacio_serna_uam_es/EYPbr33V1EtOoe1LTwO_CvkBV07plFdeXOrH4Pr8ySeSEQ).
 
-+ Download [GenderWdb](http://atvs.ii.uam.es/atvs/intranet/free_DB/beCAPTCHA).
++ Download [GenderWdb](https://dauam-my.sharepoint.com/:u:/g/personal/ignacio_serna_uam_es/Ef8pvGT5IzpBssxZCElN6doB43iP_idaOYqu2gjiXHSVIA?e=nYvxye).
 
 We have created two databases to experiment with automatic bias detection: DigitWdb and GenderWdb. The databases contain the weights Ω of the models φ(·,|Ω) used
 in our experiments for the digit and gender classification taks. 
