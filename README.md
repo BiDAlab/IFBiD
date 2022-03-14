@@ -77,3 +77,8 @@ By downloading the datasets you agree to the following terms and conditions:
 + I. Serna, D. DeAlcala, A. Morales, J. Fierrez, and J. Ortega-Garcia. IFBiD: Inference-Free Bias Detection. In *AAAI Workshop on Artificial Intelligence Safety (SafeAI)*, 2022.
 
 Please remember to reference the article on any work made public, whatever the form.
+
+## Contact
+- [Ignacio Serna](https://scholar.google.com/citations?user=qS4cpgUAAAAJ), ``ignacio.serna[at]uam.es``
+- [Aythami Morales](https://aythami.me/)
+- [Julian Fierez](http://biometrics.eps.uam.es/fierrez/index.php)
